@@ -1,5 +1,4 @@
-from Core.Attack.Tools.User_Agent import user_agent
-from Core.Attack.Tools.Email import email
+from bot.services.attack_tools import email, user_agent
 
 
 

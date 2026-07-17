@@ -1,47 +1,144 @@
-# 💣 Grobovsheke SmsBomber - закопай своего обидчика
-  ![Grobovsheke](https://github.com/Samsushkacvc/Grobovsheke-SmsBomber/assets/133483047/c54b763a-44d9-44cd-aad6-15f94070e41a)
+Мощный SMS/CALL/FEEDBACK бомбер на базе Telegram Bot с современным интерфейсом! Более 330+ рабочих сервисов с асинхронным выполнением.
 
-Мощный, кроссплатформенный, SMS/CALL/FEEDBACK Бомбер с GUI и web интерфейсом! Более 330+ рабочих сервисов! А благодаря асинхронной работе - данный бомбер не только мощный, но и быстрый! Также присутствует такой тип атаки как FEEDBACK, что является уникальной фишкой!<br><br>На данный момент, бомбер отлично спамит на номера таких стран как Россия и Узбекистан, также есть сервисы и для других стран! В будущем планируется добавить сервисы всех стран СНГ!
-<br><br><br>
-**Используйте этот скрипт исключительно в образовательных целях, избегая злоупотребления. Вы полностью несете ответственность за любое его использование!**
+**Используйте этот скрипт исключительно в образовательных целях. Вы полностью несете ответственность за любое его использование!**
 
-# 💻 Windows Скомпилированная программа
-   ![Release](https://github.com/Samsushkacvc/Grobovsheke-SmsBomber/assets/133483047/b5cd2d40-3680-46bd-a89d-bbb734d95904)
-  
-  ***[Скачать Release с Github](https://github.com/Samsushkacvc/Grobovsheke-SmsBomber/releases/tag/Grobovsheke-SmsBomberCompiled)***
+## 🚀 Особенности
 
-# 💻 Windows установка скрипта
+- **Современный стек**: Python 3.13+, aiogram 3.x
+- **Telegram Bot**: Удобный интерфейс с Premium Emoji
+- **330+ сервисов**: SMS, CALL, FEEDBACK атаки
+- **Асинхронное выполнение**: Быстрая работа с concurrent запросами
+- **FSM состояния**: Удобный пошаговый интерфейс
+- **Админ-доступ**: Защита через ADMIN_IDS
+- **Красивая статистика**: Детальные отчеты о выполнении
+- **Railway готов**: Полная поддержка деплоя
 
-- **Установка скрипта**  
-  - ***установку необходимо проводить в venv окружении***
-  ```
-  cd [путь к бомберу]
-  python -m venv venv
-  venv\scripts\activate
+## � Требования
 
-  pip install -r Core/requirements.txt
-  ```
-- **Запуск с web интерфейсом**
-  ```
-  python start.py
-  ```
-- **Запуск с GUI интерфейсом**
-  ```
-  python gui.py
-  ```
-# 🐧 Linux
-- **Установка**
-  - ***установку необходимо проводить в venv окружении***
-  ```
-  git clone https://github.com/Samsushkacvc/Grobovsheke-SmsBomber && cd Grobovsheke-SmsBomber && pip3 install -r Core/requirements.txt
-  ```
-- **Запуск с web интерфейсом**
-  ```
-  cd Grobovsheke-SmsBomber
-  python3 start.py
-  ```
-  
-# ⚡️ Дополнительно
-- **Подписаться на наш Telegram канал -> [grobovsheke.t.me](https://t.me/grobovsheke)**
-- **Связь со мной -> [HECAMCA.t.me](https://t.me/HECAMCA)**
+- Python 3.13+
+- Telegram Bot Token (от [@BotFather](https://t.me/BotFather))
 
+## 📦 Установка
+
+### Локальная установка
+
+```bash
+# Создание виртуального окружения
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# или
+venv\Scripts\activate  # Windows
+
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Настройка .env файла
+cp .env.example .env
+# Отредактируйте .env с вашими данными
+```
+
+### Настройка .env
+
+Создайте файл `.env` в корне проекта:
+
+```env
+BOT_TOKEN=your_bot_token_here
+ADMIN_IDS=111111111,222222222
+BOT_IMAGE=https://example.com/image.jpg
+```
+
+**Параметры:**
+- `BOT_TOKEN` - токен вашего Telegram бота от @BotFather
+- `ADMIN_IDS` - список ID администраторов через запятую
+- `BOT_IMAGE` - URL изображения или file_id для приветственного сообщения (опционально)
+
+## 🎮 Запуск
+
+### Локальный запуск
+
+```bash
+python main.py
+```
+
+### Railway Deploy
+
+1. Создайте новый проект на [Railway](https://railway.app)
+2. Подключите репозиторий GitHub
+3. Добавьте переменные окружения в Railway settings:
+   - `BOT_TOKEN`
+   - `ADMIN_IDS`
+   - `BOT_IMAGE` (опционально)
+4. Разверните проект
+
+Railway автоматически использует файлы `Procfile`, `runtime.txt` и `railway.json`.
+
+## 🏗️ Архитектура проекта
+
+```
+Grobovsheke-SmsBomber/
+├── bot/
+│   ├── config/           # Конфигурация (settings.py)
+│   ├── handlers/         # Обработчики команд
+│   ├── middlewares/      # Middleware для авторизации
+│   ├── filters/          # Фильтры (AdminFilter)
+│   ├── services/         # Сервисы атак
+│   ├── utils/            # Утилиты (logger)
+│   ├── keyboards/        # Inline клавиатуры
+│   └── states/           # FSM состояния
+├── main.py               # Точка входа
+├── requirements.txt      # Зависимости
+├── .env.example          # Пример конфигурации
+├── Procfile              # Railway конфиг
+├── runtime.txt           # Python версия
+└── railway.json          # Railway настройки
+```
+
+## 🔧 Технические детали
+
+### Используемые технологии
+
+- **aiogram 3.14.0** - современный фреймворк для Telegram ботов
+- **aiohttp 3.10.5** - асинхронный HTTP клиент
+- **python-dotenv 1.0.1** - управление конфигурацией
+
+### Ключевые особенности
+
+- **Type hints** - полная типизация кода
+- **Dataclasses** - современные структуры данных
+- **Asyncio** - асинхронное выполнение везде
+- **FSM** - управление состояниями пользователя
+- **Middleware** - централизованная авторизация
+- **Logging** - структурированное логирование с временными метками
+
+### Сохранение бизнес-логики
+
+Все существующие сервисы (330+) полностью сохранены и адаптированы под новую архитектуру:
+- SMS сервисы
+- CALL сервисы  
+- FEEDBACK сервисы
+
+Алгоритмы атак не изменены, только модернизирована архитектура.
+
+## 📊 Использование
+
+1. **Запустите бота**: `python main.py`
+2. **Напишите /start** в Telegram
+3. **Нажмите "Начать атаку"**
+4. **Введите номер телефона** (без +)
+5. **Введите количество повторов** (1-1000)
+6. **Подтвердите атаку**
+7. **Получите статистику**
+
+## ⚠️ Безопасность
+
+- Доступ только для администраторов (ADMIN_IDS)
+- Middleware проверяет каждый запрос
+- Логирование всех действий
+- Нет глобальных переменных
+
+## 📝 Лицензия
+
+Используйте ответственно. Автор не несет ответственности за misuse.
+
+## 🔗 Ссылки
+- **Связь**: [@enotdev](https://t.me/enotdev)
