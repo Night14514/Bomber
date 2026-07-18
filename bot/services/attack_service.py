@@ -144,20 +144,21 @@ class AttackService:
         total_failed = 0
         total_unavailable: set[str] = set()
         start_time = perf_counter()
-        total_services_count = 0
+        services_per_attack = 0
 
         async with ClientSession() as session:
-            for _ in range(repeats):
+            for i in range(repeats):
                 result = await self._execute_attack(session, phone_number)
                 total_successful += result.successful
                 total_failed += result.failed
                 total_unavailable.update(result.unavailable_services)
-                total_services_count += result.total_services
+                if i == 0:
+                    services_per_attack = result.total_services
 
         execution_time = perf_counter() - start_time
 
         return AttackResult(
-            total_services=total_services_count,
+            total_services=services_per_attack,
             successful=total_successful,
             failed=total_failed,
             unavailable_services=list(total_unavailable),

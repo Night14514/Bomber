@@ -184,7 +184,6 @@ async def confirm_attack_callback(callback: CallbackQuery, state: FSMContext) ->
             "━━━━━━━━━━━━━━\n"
             f"<tg-emoji emoji-id=\"5339335666863989864\">🌟</tg-emoji> Время выполнения: "
             f"<code>{result.execution_time:.1f} сек</code>"
-            f"{unavailable_text}"
         )
 
         if message.photo:
