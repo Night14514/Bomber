@@ -174,17 +174,7 @@ async def confirm_attack_callback(callback: CallbackQuery, state: FSMContext) ->
         )
 
         await state.clear()
-
-        unavailable_text = ""
-        if result.unavailable_services:
-            unavailable_text = (
-                "\n\n<tg-emoji emoji-id=\"5337094028942928997\">🌟</tg-emoji> "
-                "<b>Недоступные сервисы:</b>\n"
-            )
-            for service in result.unavailable_services[:10]:
-                unavailable_text += f"• {service}\n"
-            if len(result.unavailable_services) > 10:
-                unavailable_text += f"... и еще {len(result.unavailable_services) - 10}\n"
+        
 
         report_text = (
             "<tg-emoji emoji-id=\"5339026570952598443\">🌟</tg-emoji> <b>Атака завершена</b>\n"
