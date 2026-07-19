@@ -8,6 +8,7 @@ from aiohttp import ClientSession
 from bot.services.attack_tools import email, user_agent
 from bot.services.attack_urls import urls
 from bot.services.feedback_urls import feedback_urls
+from bot.services.universal_request_handler import RequestHandler
 
 
 @dataclass
@@ -40,7 +41,7 @@ class AttackService:
         self._attack_type = attack_type
 
     async def _request(self, session: ClientSession, service: dict[str, Any]) -> bool:
-        """Execute a single service request.
+        """Execute a single service request using universal handler.
 
         Args:
             session: HTTP session.
@@ -59,18 +60,9 @@ class AttackService:
             if service["info"]["attack"] not in attack_types:
                 return False
 
-            async with session.request(
-                method=service["method"],
-                url=service["url"],
-                params=service.get("params"),
-                cookies=service.get("cookies"),
-                headers=service.get("headers"),
-                data=service.get("data"),
-                json=service.get("json"),
-                timeout=20,
-            ) as response:
-                await response.text()
-                return True
+            # Use universal request handler
+            result = await RequestHandler.send_request(session, service)
+            return result['success']
         except Exception:
             return False
 
