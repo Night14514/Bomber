@@ -8,7 +8,7 @@ from aiohttp import ClientSession
 from bot.services.attack_tools import email, user_agent
 from bot.services.attack_urls import urls
 from bot.services.feedback_urls import feedback_urls
-from bot.services.universal_request_handler import RequestHandler
+from bot.services.universal_request_handler_v2 import UniversalRequestHandler
 
 
 @dataclass
@@ -41,7 +41,7 @@ class AttackService:
         self._attack_type = attack_type
 
     async def _request(self, session: ClientSession, service: dict[str, Any]) -> bool:
-        """Execute a single service request using universal handler.
+        """Execute a single service request using universal handler v2.
 
         Args:
             session: HTTP session.
@@ -60,8 +60,8 @@ class AttackService:
             if service["info"]["attack"] not in attack_types:
                 return False
 
-            # Use universal request handler
-            result = await RequestHandler.send_request(session, service)
+            # Use universal request handler v2
+            result = await UniversalRequestHandler.send_request(session, service)
             return result['success']
         except Exception:
             return False
